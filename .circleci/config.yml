@@ -12,7 +12,7 @@ jobs:
       - run: 
           name: destoryEnvironment
           when: on_fail
-          command: aws cloudformation delete-sack --stack-name my-stack
+          command: aws cloudformation delete-stack --stack-name my-stack
 
 
   createinfrastructure:
