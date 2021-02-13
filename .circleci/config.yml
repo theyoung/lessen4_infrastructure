@@ -8,8 +8,7 @@ jobs:
     steps:
       - checkout
       - run:
-          command: aws cloudformation deploy --stack-name mystack --template-file template.yml
-
+          command: aws cloudformation deploy --template-file template.yml --stack-name my-stack
 
 # Orchestrate or schedule a set of jobs
 workflows:
