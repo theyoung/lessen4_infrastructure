@@ -23,7 +23,7 @@ jobs:
       - image: alpine:latest
     steps:
       - run:
-          command: apk update | apk add curl
+          command: apk add --update curl
       - run:
           name: curl google
           command: |
