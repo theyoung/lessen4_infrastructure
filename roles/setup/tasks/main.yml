@@ -1,0 +1,38 @@
+---
+- name: "update apt package"
+  become: yes
+  yum:
+    update_cache: yes
+
+- name: "upgrade package"
+  become: yes
+  yum:
+    name: "*"
+    state: latest
+
+- name: "copy file"
+  copy: 
+    src: index.js
+    dest: /home/ec2-user/index.js
+
+- name: "epel repo add"
+  become: yes
+  shell: "amazon-linux-extras install epel -y"
+
+- name: "install nodejs"
+  become: yes
+  yum:
+    name: "nodejs"
+    state: latest
+
+- name: "install pm2"
+  become: yes
+  npm:
+    name: pm2
+    global: yes
+    production: yes
+    state: present
+
+- name: "run server"
+  become: yes
+  shell: "pm2 start index.js -f"
