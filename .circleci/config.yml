@@ -4,13 +4,19 @@ version: 2.1
 jobs:
   createinfrastructure:
     docker:
-      - image: amazon/aws-cli
+      - image: python:3.7-alpine3.11
     steps:
       - checkout
       - run:
           command: ls -al
+      - add_ssh_keys:
+          fingerprints: [7c:fd:fa:f2:4a:db:a4:c8:69:dc:bf:51:10:4c:c6:14]
       - run:
-          command: aws cloudformation deploy --template-file template.yml --stack-name my-stack
+          name: install ansible
+          command: apk add --update ansible
+      - run:
+          name: Configure Server
+          command: ansible-playbook -i inventory.txt main.yml
 
 # Orchestrate or schedule a set of jobs
 workflows:
