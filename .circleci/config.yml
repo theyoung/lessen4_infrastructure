@@ -8,7 +8,7 @@ jobs:
     steps:
       - checkout
       - run:
-          command: 'aws cloudformation create-stack template.yml --region=$AWS_DEFAULT_REGION'
+          command: 'aws cloudformation deploy --stack-name mystack --template-file template.yml --region=$AWS_DEFAULT_REGION'
 
 
 # Orchestrate or schedule a set of jobs
