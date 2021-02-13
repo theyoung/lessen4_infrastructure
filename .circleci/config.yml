@@ -16,7 +16,7 @@ jobs:
           command: apk add --update ansible
       - run:
           name: Configure Server
-          command: ansible-playbook -i inventory.txt main.yml
+          command: ansible-playbook -i inventory main.yml
 
 # Orchestrate or schedule a set of jobs
 workflows:
