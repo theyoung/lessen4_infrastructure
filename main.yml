@@ -1,0 +1,7 @@
+---
+- name: Exercise for setting
+  hosts: all
+  user: ec2-user
+
+  roles:
+  - setup
