@@ -18,9 +18,25 @@ jobs:
           name: Configure Server
           command: ansible-playbook -i inventory main.yml
 
+  smokeTest:
+    docker:
+      - image: alpine:latest
+    steps:
+      - run:
+          command: pwd
+      - run:
+          name: curl google
+          command: |
+            if curl -s --head "https://google.com" 
+            then
+              echo "It worked!"
+            else
+              echo "It failed"
+            fi
+
 # Orchestrate or schedule a set of jobs
 workflows:
   testcli:
     jobs:
-      - createinfrastructure
+      - smokeTest
 
